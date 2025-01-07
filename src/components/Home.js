@@ -1,6 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import logo from '../logo192.png'
 import { Link } from 'react-router-dom';
+import UserService from '../service/UserService';
 function Home() {
   const checkboxOptions = ['Reading', 'Traveling', 'Gaming'];
 
@@ -15,6 +16,13 @@ function Home() {
 
     });
 
+    useEffect(() => {
+      UserService.getAllUsers().then((response) => {
+        console.log(response.data);
+      });
+  }, []);
+
+
   const handleChange = (event) => {
     console.log(event.target.value);
     
@@ -22,7 +30,7 @@ function Home() {
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'radio' ? value : value,
+      [name]: value,
     }));
 
   };
@@ -50,6 +58,22 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData); // Display all form data in the console
+
+    let data = {
+      name: formData.text,
+      email: formData.email,
+      gender: formData.radioValue,
+      department: formData.selectedOption,
+      hobbies: formData.checkboxes,
+      doj:formData.date,
+      salary:formData.rangeValue
+    }
+    console.log(data);
+    
+    UserService.addUser(data).then((response) => {
+      console.log(response.data); // Display all form data in the);
+    })
+      
   };
 
   const handleClick = (e) => {

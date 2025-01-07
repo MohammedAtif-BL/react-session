@@ -1,7 +1,12 @@
-// import axios from "axios";
+import axios from "axios";
 
-// class UserService{
-//     public addUser(){
-//         return axios.post()
-//     }
-// }
+class UserService{
+    addUser(Object){
+        return axios.post("http://localhost:8080/add",Object)
+    }
+
+    getAllUsers(){
+        return axios.get("http://localhost:8080")
+    }
+}
+export default new UserService();
