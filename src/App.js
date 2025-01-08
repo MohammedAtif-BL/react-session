@@ -4,6 +4,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import DataTable from './components/DataTable';
+import EmployeeForm from './components/EmployeeForm';
+import EmployeeHome from './components/EmployeeHome';
 
 const App = () => {
     return (
@@ -23,10 +25,14 @@ const App = () => {
                 </nav>
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/table" element={<DataTable />} />
+                    <Route path="/" element={<EmployeeHome />} />
+                    <Route path="/add" element={<EmployeeForm />} />
+                    <Route path="/update/:id" element={<EmployeeForm />} />
+
                 </Routes>
             </div>
     );
